@@ -1,5 +1,6 @@
 import os
 from dotenv import load_dotenv
+load_dotenv()
 
 # from venv import logger
 from slack_bolt import App
@@ -17,7 +18,7 @@ app = App(
 
 # client = WebClient(token=SLACK_BOT_TOKEN)
 
-channel_id = "C089G7VKG5P"
+channel_id = "C089G7VKG5P"      # '튜토리얼' 채널
 
 @app.command("/conv-commit")
 def conv_commit(ack):
@@ -27,9 +28,11 @@ def conv_commit(ack):
 def say_hi(body, say):
     # 사용자 ID 가져오기
     user_id = body.get("event", {}).get("user", "unknown user")
+    text = body.get("event", {}).get("text", "")
+    bot_id = app.client.auth_test()["user_id"]
     
     # 봇이 스스로의 메시지에 반응하지 않도록 필터링
-    if user_id != "USLACKBOT":  # 또는 봇의 사용자 ID
+    if user_id != "USLACKBOT" and f"<@{bot_id}>" not in text:
         say(f"<@{user_id}> 님, 오늘도 힘내세요!")
 
 @app.event("app_mention")
