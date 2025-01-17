@@ -1,0 +1,37 @@
+name: "🆕 Feature"
+description: "봇 추가"
+title: "[Feat]: 00봇"
+labels: "feature"
+body:
+  - type: input
+    attributes:
+      label: 🤖 설명
+      description: 봇의 기능
+      placeholder: 추가하려는 봇에 대한 한줄 설명
+    validations:
+      required: false
+  - type: textarea
+    attributes:
+      label: 📋 할일
+      description: 구현 to-do
+      placeholder: | 
+      "- [ ]"를 앞에 적으면 체크리스트가 됩니다
+      "- [x]"를 적으면 완료 항목으로 표시됩니다
+    validations:
+      required: true
+  - type: date
+    attributes:
+      label: 📆 기한
+      description: 예상 개발 완료 날짜
+  - type: dropdown
+    attributes:
+      label: ❗️ 우선
+      options:
+        - "1순위"
+        - "2순위"
+        - "부가 기능"
+  - type: textarea
+    attributes:
+      label: 📝 메모
+      placeholder: 참고 자료 링크나 부가적으로 필요한 자원이 있다면 메모하세요
+      
