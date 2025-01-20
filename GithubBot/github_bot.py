@@ -26,18 +26,14 @@ def conv_commit(ack):
 def load_json(file_path):
     with open(file_path, "r", encoding="utf-8") as file:
         return json.load(file)
-
 issue_guide_path = os.path.join(os.path.dirname(__file__), "issue_guide.json")
-
 @app.command("/template")
 def conv_issue(ack):
   blocks = load_json(issue_guide_path)
   ack(blocks=blocks)
 
+
 issue_template_path = os.path.abspath("./templates/issue_template.yml")
-pr_template_path = os.path.abspath("./templates/pull_request_template.md")
-
-
 @app.action("download_issue")
 def handle_download_issue(ack, body, client):
     ack()
@@ -53,6 +49,7 @@ def handle_download_issue(ack, body, client):
     )
 
 
+pr_template_path = os.path.abspath("./templates/pull_request_template.md")
 @app.action("download_pr")
 def handle_download_pr(ack, body, client):
     ack()
