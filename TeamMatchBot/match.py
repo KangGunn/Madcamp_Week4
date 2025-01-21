@@ -3,6 +3,7 @@ from dotenv import load_dotenv
 load_dotenv()
 from slack_bolt import App
 from slack_bolt.adapter.socket_mode import SocketModeHandler
+from algorithm import match_teams  # 팀 매칭 알고리즘 가져오기
 
 SLACK_APP_TOKEN = os.getenv("SLACK_APP_TOKEN")
 SLACK_BOT_TOKEN = os.getenv("SLACK_BOT_TOKEN")
@@ -170,14 +171,7 @@ def handle_survey_submission(ack, body, client):
 
 
 def announce_teams(client, channel_id):
-    # 설문 데이터를 기반으로 2인 1조 매칭 (간단한 매칭 로직 예제)
-    matched_teams = []
-    available_users = list(survey_data.keys())
-
-    while len(available_users) >= 2:
-        user1 = available_users.pop(0)
-        user2 = available_users.pop(0)
-        matched_teams.append((user1, user2))
+    matched_teams = match_teams(survey_data)
 
     # 팀 매칭 결과 발표
     team_messages = [f"팀 {i + 1}: <@{team[0]}> & <@{team[1]}>" for i, team in enumerate(matched_teams)]
