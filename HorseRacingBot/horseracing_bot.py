@@ -160,13 +160,13 @@ def start_race(ack, body, say):
 
 # 경주 상태 업데이트 함수
 def race_update(step, initial_message, client, max_len, name_to_id):
-    weights = [0.4, 0.3, 0.2, 0.1]
+    weights = [0.44, 0.3, 0.2, 0.05, 0.01]
     finishline = 60
     winner = None
 
     # 각 말의 위치를 업데이트
     for horse in horse_positions:
-        move = random.choices([1, 2, 3, 4], weights=weights, k=1)[0]
+        move = random.choices([1, 2, 3, 4, 7], weights=weights, k=1)[0]
         horse_positions[horse] += move
 
     # 경주 상황 텍스트
