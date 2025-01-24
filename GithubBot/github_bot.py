@@ -28,9 +28,10 @@ def load_json(file_path):
         return json.load(file)
 issue_guide_path = os.path.join(os.path.dirname(__file__), "issue_guide.json")
 @app.command("/template")
-def conv_issue(ack):
+def conv_issue(ack, body, say):
+  ack()
   blocks = load_json(issue_guide_path)
-  ack(blocks=blocks)
+  say(blocks=blocks, text="템플릿")
 
 
 issue_template_path = os.path.abspath("./templates/issue_template.yml")
