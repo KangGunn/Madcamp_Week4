@@ -35,6 +35,14 @@ def start_match_command(ack, body, client):
         text = "팀 빌딩을 시작합니다! 아래 버튼을 클릭해 사전 조사에 참여해주세요.",
         blocks = [
             {
+                "type": "header",
+                "text": {
+                    "type": "plain_text",
+                    "text": "👥 팀 빌딩을 시작합니다! 아래 버튼을 클릭해 사전 조사에 참여해주세요.",
+                    "emoji": True
+                }
+		    },
+            {
                 "type" : "actions",
                 "elements": [
                     {
@@ -149,13 +157,17 @@ def handle_survey_submission(ack, body, client):
         "not_preferred_users": not_preferred_users
     }
 
+        # 제외할 사용자 목록
+    excluded_users = {"U089D50TY78", "U089V2UAF7E"}
+
     # 제출한 사람과 제출하지 않은 사람 계산
     submitted_users = list(survey_data.keys())
-    not_submitted_users = [user for user in users_in_channel if user not in submitted_users]
+    not_submitted_users = [user for user in users_in_channel if user not in submitted_users and user not in excluded_users and user != "U089S3D6MPA"]
 
     # 실시간 상태 업데이트
     if not_submitted_users:
         not_submitted_text = f"제출하지 않은 사람: <@{'>, <@'.join(not_submitted_users)}>"
+        print(not_submitted_users)
     else:
         not_submitted_text = "모든 사용자가 설문을 제출했습니다! 🎉"
 

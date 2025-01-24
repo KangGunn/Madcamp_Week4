@@ -17,7 +17,7 @@ def schedule_notifications():
             schedule.every().day.at(reminder_now.strftime("%H:%M")).do(send_reminder, event)
 
         # 전날 오후 8시
-        reminder_1 = (date - timedelta(days=1)).replace(hour=20, minute=0, second=0)
+        reminder_1 = (date - timedelta(days=1)).replace(hour=22, minute=0, second=0)
         if reminder_1 > datetime.now():
             schedule.every().day.at(reminder_1.strftime("%H:%M")).do(send_reminder, event)
 
