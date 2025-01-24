@@ -4,8 +4,10 @@ charset-normalizer==3.4.1
 idna==3.10
 python-dotenv==1.0.1
 requests==2.32.3
+schedule==1.2.2
 slack_bolt==1.22.0
 slack_sdk==3.34.0
 tzdata==2024.2
 tzlocal==5.2
 urllib3==2.3.0
+watchdog==6.0.0
